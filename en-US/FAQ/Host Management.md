@@ -1,0 +1,12 @@
+## Host Addition Failure Issue Collection
+
+|Problem  |Cause |Recommended Solution |Other Solutions (Cannot resolve residual issues, but can be deployed) |
+| -------------------- | ----------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------- |
+| Residual Process      | The port allocated for the default service is occupied by another service (non-agent service) process | (1) If the other service can be removed, directly kill the process occupying the port;<br /> (2) If the other service cannot be deleted, change the port; | None                                                   |
+| Residual Process      | ycm service deployment occupies the same port, but the directory has no residue | Change the port                                               | None                                                   |
+| Residual Path        | Due to force deletion, there are remnants in the previously default deployed path | Delete the ycm deployment path                               | Change the installation directory;                   |
+| Residual Path        | Other ycm services deployed a same-named path        | Change the installation path                                  | None                                                   |
+| Residual Path        | Other same-named files                                | (1) If it is a deletable file, then delete the file directly; (2) If it is a non-deletable file, change the installation path | None                                                   |
+| Residual Process and Path | Possible host issues left from force deletion       | You can execute bash ./clean.sh in the ycm-agent directory's scripts folder to redeploy; | Change the port and installation path;               |
+| Residual Process and Path | Other ycm services have deployed the host          | Change the port and installation path;                       | None                                                   |
+| Residual Process and Path | There are residual paths but not complete, and the cleanup script does not exist | First delete the ycm-agent path, then kill all related ycm-agent processes using ps -ef&#124; grep ycm-agent. Execute steps: first kill the monit process, then kill other related processes | First delete related directories, change deployment port; change port and installation path; |
